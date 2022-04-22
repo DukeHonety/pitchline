@@ -63,6 +63,9 @@ function Drawline(height, Vx, Vy, Vz, Ratio){
 function Drawlines(){
   data = [];
   d3.csv('import.csv', function(rows){
+  // let rows = [ { balance: "17.69", color: "#ff0000", height: "1.91", horizontal: "-3.29", player: "player1", side: "3.55", vertical: "2.19"},
+  //     { balance: "18.48", color: "#00ff00", height: "1.71", horizontal: "-2.29", player: "player2", side: "3.55", vertical: "3.19"},
+  //     { balance: "17.2", color: "#0022ff", height: "1.82", horizontal: "-2.79", player: "player3", side: "3.55", vertical: "1.19"} ];
     // function unpack(rows, key) {
     //   return rows.map(function(row)
     //   { return row[key]; }); 
