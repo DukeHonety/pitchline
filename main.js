@@ -37,7 +37,6 @@ function Drawline(height, Vx, Vy, Vz, Ratio){
     let posz = height + Vz*Ratio*T - G*T*T/2;
     if (posz < 0)
       break;
-    console.log(posz);
     x.push(posx);
     y.push(posy);
     z.push(posz);
@@ -63,7 +62,7 @@ function Drawline(height, Vx, Vy, Vz, Ratio){
 
 function Drawlines(){
   data = [];
-  d3.csv('import.csv', function(rows){
+  d3.csv('main.csv', function(rows){
   // let rows = [ { balance: "17.69", color: "#ff0000", height: "1.91", horizontal: "-3.29", player: "player1", side: "3.55", vertical: "2.19"},
   //     { balance: "18.48", color: "#00ff00", height: "1.71", horizontal: "-2.29", player: "player2", side: "3.55", vertical: "3.19"},
   //     { balance: "17.2", color: "#0022ff", height: "1.82", horizontal: "-2.79", player: "player3", side: "3.55", vertical: "1.19"} ];
@@ -73,11 +72,11 @@ function Drawlines(){
     // }
     console.log(rows);
     for(let i = 0; i < rows.length; i++){// balance,vertical,horizontal,side,height
-      const height = parseFloat(rows[i].height);
-      const Vx = parseFloat(rows[i].vertical);
-      const Vy = parseFloat(rows[i].horizontal);
-      const Vz = parseFloat(rows[i].side);
-      const VBalance = parseFloat(rows[i].balance);
+      const height = parseFloat(rows[i].release_height);
+      const Vx = parseFloat(rows[i].pitch_release_vertical);
+      const Vy = parseFloat(rows[i].pitch_release_horizontal);
+      const Vz = parseFloat(rows[i].release_side);
+      const VBalance = parseFloat(rows[i].pitch_velocity);
       const Ratio = VBalance / Math.sqrt(Math.pow(Vx,2) + Math.pow(Vy,2) + Math.pow(Vz,2));
 
       const G = 32.1522; // 9.8m
@@ -101,7 +100,7 @@ function Drawlines(){
         y: y,
         z: z,
         mode: 'lines',
-        name: rows[i].player,
+        name: rows[i].player_id,
         marker: {
           color: '#1f77b4',
           size: 12,
@@ -137,25 +136,7 @@ function Drawlines(){
           x: 1, y: 1, z:0.3
         },
         xaxis: {
-          visible: false,
-          ticks: 'outside',
-          tick0: 0,
-          tickwidth: 4,
-          tickfont:
-          {
-            color:'#fff',
-            family:'Old Standard TT, serif',
-            size: 10
-          },
-          ticksuffix:'feet',
-          backgroundcolor: "rgb(255, 255, 255)",
-          gridcolor: "rgb(255, 255, 255)",
-          showbackground: false,
-          zerolinecolor: "rgb(255, 255, 255)",
-          range: [-3, 400],
-        },
-        yaxis: {
-          visible: false,
+          visible: true,
           ticks: 'outside',
           tick0: 0,
           tickwidth: 4,
@@ -170,7 +151,25 @@ function Drawlines(){
           gridcolor: "rgb(255, 255, 255)",
           showbackground: true,
           zerolinecolor: "rgb(255, 255, 255)",
-          range: [-400, 3],
+          range: [-3, 400],
+        },
+        yaxis: {
+          visible: true,
+          ticks: 'outside',
+          tick0: 0,
+          tickwidth: 4,
+          tickfont:
+          {
+            color:'dimgrey',
+            family:'Old Standard TT, serif',
+            size: 10
+          },
+          ticksuffix:'feet',
+          backgroundcolor: "rgb(255, 255, 255)",
+          gridcolor: "rgb(255, 255, 255)",
+          showbackground: true,
+          zerolinecolor: "rgb(255, 255, 255)",
+          range: [-3, 400],
         },
         zaxis: {
           ticks: 'outside',
@@ -203,7 +202,7 @@ function AddBackground(){
     var x = [];
     var y = [];
     var z = [];
-    for (let i = -diameter; i < 0; i+= 0.02){
+    for (let i = 0; i < diameter; i+= 0.02){
       let posy = i;
       let posx = Math.sqrt(diameter*diameter - i*i);
       let posz = 0;
@@ -218,7 +217,7 @@ function AddBackground(){
     z.push(0);
     
     diameter = bigCircle;
-    for (let i = -diameter; i < 0; i+= 0.02){
+    for (let i = 0; i < diameter; i+= 0.02){
       let posy = i;
       let posx = Math.sqrt(diameter*diameter - i*i);
       let posz = 0;
