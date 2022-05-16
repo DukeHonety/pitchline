@@ -1,6 +1,7 @@
 let data = [];
 const smallCircle = 1;
-const bigCircle = 40;
+const bigCircle = 330;
+const oneFeet = 3.28084;
 $(document).ready(function(){
   $(".inputs").hide();
   $("#showLine").click(function(){
@@ -24,7 +25,7 @@ function Drawline(height, Vx, Vy, Vz, Ratio){
   //   return rows.map(function(row)
   //   { return row[key]; });
   // }
-  const G = 9.8;
+  const G = 32.1522;
   var x = [0];
   var y = [0];
   var z = [height];
@@ -79,7 +80,7 @@ function Drawlines(){
       const VBalance = parseFloat(rows[i].balance);
       const Ratio = VBalance / Math.sqrt(Math.pow(Vx,2) + Math.pow(Vy,2) + Math.pow(Vz,2));
 
-      const G = 9.8;
+      const G = 32.1522; // 9.8m
       var x = [0];
       var y = [0];
       var z = [0];
@@ -136,23 +137,25 @@ function Drawlines(){
           x: 1, y: 1, z:0.3
         },
         xaxis: {
+          visible: false,
           ticks: 'outside',
           tick0: 0,
           tickwidth: 4,
           tickfont:
           {
-            color:'dimgrey',
+            color:'#fff',
             family:'Old Standard TT, serif',
-            size: 14
+            size: 10
           },
-          ticksuffix:'m',
+          ticksuffix:'feet',
           backgroundcolor: "rgb(255, 255, 255)",
-          gridcolor: "rgb(220, 220, 220)",
-          showbackground: true,
+          gridcolor: "rgb(255, 255, 255)",
+          showbackground: false,
           zerolinecolor: "rgb(255, 255, 255)",
-          range: [-3, 50],
+          range: [-3, 400],
         },
         yaxis: {
+          visible: false,
           ticks: 'outside',
           tick0: 0,
           tickwidth: 4,
@@ -160,31 +163,32 @@ function Drawlines(){
           {
             color:'dimgrey',
             family:'Old Standard TT, serif',
-            size: 14
+            size: 10
           },
-          ticksuffix:'m',
+          ticksuffix:'feet',
           backgroundcolor: "rgb(255, 255, 255)",
-          gridcolor: "rgb(200, 200, 200)",
+          gridcolor: "rgb(255, 255, 255)",
           showbackground: true,
           zerolinecolor: "rgb(255, 255, 255)",
-          range: [-50, 3],
+          range: [-400, 3],
         },
         zaxis: {
           ticks: 'outside',
           tick0: 0,
-          tickwidth: 4,
+          tickwidth: 2,
+          tickcolor: '#000',
           tickfont:
             {
             color:'dimgrey',
             family:'Old Standard TT, serif',
-            size: 14
+            size: 10
             },
-          ticksuffix:'m',
+          ticksuffix:'feet',
           backgroundcolor: "rgb(43, 52, 71)",
-          gridcolor: "rgb(50, 50, 50)",
+          gridcolor: "rgb(255,255,255)",
           showbackground: true,
           zerolinecolor: "rgb(255, 255, 255)",
-          range: [0, 20],
+          range: [0, 120],
         }
       },
     };
@@ -195,7 +199,7 @@ function Drawlines(){
 function AddBackground(){
     // Add new circles
     let diameter = smallCircle;
-    const G = 9.8;
+    // const G = 9.8;
     var x = [];
     var y = [];
     var z = [];
