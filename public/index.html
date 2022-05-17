@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style type="text/css">
+        body {
+          background-color: ivory;
+          padding: 10px;
+        }
+
+        div.info{
+            position: absolute;
+            top: 0px;
+            display: none;
+            background-color: white;
+            border: 1px solid dimgray;
+            padding: 10px;
+        }
+        #myDiv{
+            border: 1px solid grey;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="inputs" style="display: none;">
+            <h3 id="head1">  Give the inputs for the pitch</h3>
+            <div>
+                <label>Release Height = </label><input type="number" id="height" name="height" value="4.91"/>
+            </div>
+            <div>
+                <label>Release X = </label><input type="number" id="vx" name="x" value="2.19"/>
+            </div>
+            <div>
+                <label>Release Y = </label><input type="number" id="vy" name="y" value="-3.29"/>
+            </div>
+            <div>
+                <label>Release Z = </label><input type="number" id="vz" name="z" value="3.55"/>
+            </div>
+            <div>
+                <label>Velocity = </label><input type="number" id="balance" name="balance" value="77.69"/>
+            </div>
+            <button id="showLine">Show</button>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <div id="myDiv" style="margin:0 auto">
+            </div>
+        </div>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.4.4/d3.min.js"></script> -->
+        <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+        <script src="jquery.min.js"></script>
+        <script src="d3.min.js"></script>
+        <!-- <script src="plotly.js"></script> -->
+        <script src="main.js"></script>
+    </body>
+</html>

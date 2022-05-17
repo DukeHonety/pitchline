@@ -73,10 +73,10 @@ function Drawlines(){
     console.log(rows);
     for(let i = 0; i < rows.length; i++){// balance,vertical,horizontal,side,height
       const height = parseFloat(rows[i].release_height);
-      const Vx = parseFloat(rows[i].launch_angle_vertical);
-      const Vy = parseFloat(rows[i].launch_angle_horizontal);
+      const Vx = parseFloat(rows[i].pitch_release_vertical);
+      const Vy = parseFloat(rows[i].pitch_release_horizontal);
       const Vz = parseFloat(rows[i].release_side);
-      const VBalance = parseFloat(rows[i].exit_speed);
+      const VBalance = parseFloat(rows[i].pitch_velocity);
       const Ratio = VBalance / Math.sqrt(Math.pow(Vx,2) + Math.pow(Vy,2) + Math.pow(Vz,2));
 
       const G = 32.1522; // 9.8m
@@ -94,31 +94,13 @@ function Drawlines(){
         if (posz < 0)
           break;
       }
-      let color = '#ff0000';
-      switch(rows[i].batted_ball_type){
-        case 'UI':
-          color = 'yellow';
-          break;
-        case 'GB':
-          color = 'purple';
-          break;
-        case 'LD':
-          color = '#ff0000';
-          break;
-        case 'FB':
-        case 'FBS':
-          color = 'green';
-          break;
-        default:
-          color = '#000000';
-          break;
-      }
+
       var trace = {
         x: x,
         y: y,
         z: z,
         mode: 'lines',
-        name: rows[i].batted_ball_type,
+        name: rows[i].player_id,
         marker: {
           color: '#1f77b4',
           size: 12,
@@ -128,7 +110,7 @@ function Drawlines(){
             width: 0
           }},
         line: {
-          color: color,
+          color: rows[i].color,
           width: 3
         },
         type: 'scatter3d'
@@ -154,7 +136,7 @@ function Drawlines(){
           x: 1, y: 1, z:0.3
         },
         xaxis: {
-          visible: false,
+          visible: true,
           ticks: 'outside',
           tick0: 0,
           tickwidth: 4,
@@ -172,7 +154,7 @@ function Drawlines(){
           range: [-3, 400],
         },
         yaxis: {
-          visible: false,
+          visible: true,
           ticks: 'outside',
           tick0: 0,
           tickwidth: 4,
